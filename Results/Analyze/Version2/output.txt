@@ -1,0 +1,74 @@
+       destination  passanger weather  temperature  ... toCoupon_GEQ15min toCoupon_GEQ25min direction_opp  Y       
+0  No Urgent Place      Alone   Sunny           55  ...                 0                 0             1  1
+1  No Urgent Place  Friend(s)   Sunny           80  ...                 0                 0             1  0
+2  No Urgent Place  Friend(s)   Sunny           80  ...                 1                 0             1  1
+3  No Urgent Place  Friend(s)   Sunny           80  ...                 1                 0             1  0
+4  No Urgent Place  Friend(s)   Sunny           80  ...                 1                 0             1  0
+
+[5 rows x 22 columns]
+Shape of the dataset: (12684, 22)
+<class 'pandas.DataFrame'>
+RangeIndex: 12684 entries, 0 to 12683
+Data columns (total 22 columns):
+ #   Column                Non-Null Count  Dtype
+---  ------                --------------  -----
+ 0   destination           12684 non-null  str  
+ 1   passanger             12684 non-null  str  
+ 2   weather               12684 non-null  str  
+ 3   temperature           12684 non-null  int64
+ 4   coupon                12684 non-null  str  
+ 5   expiration            12684 non-null  str  
+ 6   gender                12684 non-null  str  
+ 7   age                   12684 non-null  str  
+ 8   maritalStatus         12684 non-null  str  
+ 9   has_children          12684 non-null  int64
+ 10  education             12684 non-null  str  
+ 11  occupation            12684 non-null  str  
+ 12  income                12684 non-null  str  
+ 13  Bar                   12577 non-null  str  
+ 14  CoffeeHouse           12467 non-null  str  
+ 15  CarryAway             12533 non-null  str  
+ 16  RestaurantLessThan20  12554 non-null  str  
+ 17  Restaurant20To50      12495 non-null  str  
+ 18  toCoupon_GEQ15min     12684 non-null  int64
+ 19  toCoupon_GEQ25min     12684 non-null  int64
+ 20  direction_opp         12684 non-null  int64
+ 21  Y                     12684 non-null  int64
+dtypes: int64(6), str(16)
+memory usage: 2.1 MB
+                     count       mean        std   min   25%   50%   75%   max
+temperature        12684.0  63.301798  19.154486  30.0  55.0  80.0  80.0  80.0
+has_children       12684.0   0.414144   0.492593   0.0   0.0   0.0   1.0   1.0
+toCoupon_GEQ15min  12684.0   0.561495   0.496224   0.0   0.0   1.0   1.0   1.0
+toCoupon_GEQ25min  12684.0   0.119126   0.323950   0.0   0.0   0.0   0.0   1.0
+direction_opp      12684.0   0.785241   0.410671   0.0   1.0   1.0   1.0   1.0
+Y                  12684.0   0.568433   0.495314   0.0   0.0   1.0   1.0   1.0
+Missing values:
+destination               0
+passanger                 0
+weather                   0
+temperature               0
+coupon                    0
+expiration                0
+gender                    0
+age                       0
+maritalStatus             0
+has_children              0
+education                 0
+occupation                0
+income                    0
+Bar                     107
+CoffeeHouse             217
+CarryAway               151
+RestaurantLessThan20    130
+Restaurant20To50        189
+toCoupon_GEQ15min         0
+toCoupon_GEQ25min         0
+direction_opp             0
+Y                         0
+dtype: int64
+Duplicate values: 291
+Target Distribution (Y):
+Y
+1    56.843267
+0    43.156733

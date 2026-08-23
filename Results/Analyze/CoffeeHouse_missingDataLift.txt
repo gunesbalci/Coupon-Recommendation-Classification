@@ -1,0 +1,241 @@
+--- 'CoffeeHouse' Eksikliği ve 'destination' Orantılama Analizi ---
+                 Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+destination                                                        
+No Urgent Place               58.53              49.53         1.18
+Home                          22.58              25.52         0.88
+Work                          18.89              24.94         0.76
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'passanger' Orantılama Analizi ---
+           Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+passanger                                                    
+Alone                   45.16              57.59         0.78
+Friend(s)               28.11              26.00         1.08
+Partner                 17.05               8.48         2.01
+Kid(s)                   9.68               7.93         1.22
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'weather' Orantılama Analizi ---
+         Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+weather                                                    
+Sunny                 78.34              79.38         0.99
+Snowy                 12.44              11.08         1.12
+Rainy                  9.22               9.54         0.97
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'temperature' Orantılama Analizi ---
+             Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+temperature                                                    
+80                        49.77              51.47         0.97
+55                        29.95              30.27         0.99
+30                        20.28              18.26         1.11
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'coupon' Orantılama Analizi ---
+                       Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+coupon                                                                   
+Bar                                 17.97              15.90         1.13
+Carry out & Take away               14.75              18.87         0.78
+Coffee House                        33.18              31.50         1.05
+Restaurant(20-50)                   12.44              11.76         1.06
+Restaurant(<20)                     21.66              21.96         0.99
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'expiration' Orantılama Analizi ---
+            Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+expiration                                                    
+1d                       49.77              55.91         0.89
+2h                       50.23              44.09         1.14
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'gender' Orantılama Analizi ---
+        Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+gender                                                    
+Female               32.72              51.33         0.64
+Male                 67.28              48.67         1.38
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'age' Orantılama Analizi ---
+         Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+age                                                        
+21                     2.76              20.92         0.13
+26                    56.22              20.18         2.79
+31                    12.44              16.08         0.77
+36                    20.28              10.40         1.95
+41                     2.76               8.62         0.32
+46                      NaN               5.41          NaN
+50plus                 5.53              14.10         0.39
+below21                 NaN               4.31          NaN
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'maritalStatus' Orantılama Analizi ---
+                   Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+maritalStatus                                                        
+Divorced                         5.53               4.07         1.36
+Married partner                 55.76              40.21         1.39
+Single                          15.67              37.46         0.42
+Unmarried partner               23.04              17.23         1.34
+Widowed                           NaN               1.02          NaN
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'has_children' Orantılama Analizi ---
+              Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+has_children                                                    
+0                          61.75              58.59         1.05
+1                          38.25              41.41         0.92
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'education' Orantılama Analizi ---
+                                        Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+education                                                                                 
+Associates degree                                    10.14               9.09         1.12
+Bachelors degree                                     56.22              34.18         1.65
+Graduate degree (Masters or Doctorate)               10.14              14.60         0.69
+High School Graduate                                  2.76               7.13         0.39
+Some High School                                       NaN               0.69          NaN
+Some college - no degree                             20.74              34.30         0.60
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'occupation' Orantılama Analizi ---
+                                           Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+occupation                                                                                   
+Architecture & Engineering                                NaN               1.38          NaN
+Arts Design Entertainment Sports & Media                  NaN               4.96          NaN
+Building & Grounds Cleaning & Maintenance                 NaN               0.35          NaN
+Business & Financial                                     2.76               4.29         0.64
+Community & Social Services                             10.14               1.90         5.34
+Computer & Mathematical                                 18.43              11.10         1.66
+Construction & Extraction                                 NaN               1.21          NaN
+Education&Training&Library                              20.28               7.43         2.73
+Farming Fishing & Forestry                                NaN               0.34          NaN
+Food Preparation & Serving Related                        NaN               2.35          NaN
+Healthcare Practitioners & Technical                    10.14               1.92         5.27
+Healthcare Support                                        NaN               1.91          NaN
+Installation Maintenance & Repair                         NaN               1.05          NaN
+Legal                                                     NaN               1.73          NaN
+Life Physical Social Science                              NaN               1.34          NaN
+Management                                              12.90               6.61         1.95
+Office & Administrative Support                           NaN               5.04          NaN
+Personal Care & Service                                 10.14               1.38         7.35
+Production Occupations                                    NaN               0.87          NaN
+Protective Service                                        NaN               1.38          NaN
+Retired                                                   NaN               3.90          NaN
+Sales & Related                                          9.68               8.62         1.12
+Student                                                   NaN              12.49          NaN
+Transportation & Material Moving                          NaN               1.72          NaN
+Unemployed                                               5.53              14.74         0.38
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'income' Orantılama Analizi ---
+                  Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+income                                                              
+$100000 or More                10.14              13.69         0.74
+$12500 - $24999                29.95              14.44         2.08
+$25000 - $37499                12.90              15.87         0.81
+$37500 - $49999                23.04              14.23         1.62
+$50000 - $62499                 2.76              13.08         0.21
+$62500 - $74999                 2.76               6.67         0.41
+$75000 - $87499                  NaN               6.76          NaN
+$87500 - $99999                15.67               7.06         2.22
+Less than $12500                2.76               8.22         0.34
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'Bar' Orantılama Analizi ---
+       Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+Bar                                                      
+1~3                 12.00              19.66         0.61
+4~8                 12.57               8.56         1.47
+gt8                   NaN               2.77          NaN
+less1               25.14              27.69         0.91
+never               50.29              41.32         1.22
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'CoffeeHouse' Orantılama Analizi ---
+             Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+CoffeeHouse                                                    
+1~3                         NaN              25.87          NaN
+4~8                         NaN              14.31          NaN
+gt8                         NaN               8.91          NaN
+less1                       NaN              27.15          NaN
+never                       NaN              23.76          NaN
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'CarryAway' Orantılama Analizi ---
+           Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+CarryAway                                                    
+1~3                     62.86              37.28         1.69
+4~8                     12.00              33.97         0.35
+gt8                       NaN              12.72          NaN
+less1                   25.14              14.81         1.70
+never                     NaN               1.22          NaN
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'RestaurantLessThan20' Orantılama Analizi ---
+                      Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+RestaurantLessThan20                                                    
+1~3                                50.29              42.82         1.17
+4~8                                12.00              28.52         0.42
+gt8                                  NaN              10.24          NaN
+less1                              25.14              16.67         1.51
+never                              12.57               1.75         7.17
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'Restaurant20To50' Orantılama Analizi ---
+                  Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+Restaurant20To50                                                    
+1~3                            14.29              26.33         0.54
+4~8                              NaN               5.83          NaN
+gt8                              NaN               2.11          NaN
+less1                          57.14              48.64         1.17
+never                          28.57              17.09         1.67
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'toCoupon_GEQ15min' Orantılama Analizi ---
+                   Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+toCoupon_GEQ15min                                                    
+1                               51.15              56.15         0.91
+0                               48.85              43.85         1.11
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'toCoupon_GEQ25min' Orantılama Analizi ---
+                   Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+toCoupon_GEQ25min                                                    
+0                               89.86              88.09         1.02
+1                               10.14              11.91         0.85
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'direction_opp' Orantılama Analizi ---
+               Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+direction_opp                                                    
+1                           82.49              78.52         1.05
+0                           17.51              21.48         0.82
+
+==================================================
+
+--- 'CoffeeHouse' Eksikliği ve 'Y' Orantılama Analizi ---
+   Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+Y                                                    
+1               50.69              56.84         0.89
+0               49.31              43.16         1.14
+
+==================================================

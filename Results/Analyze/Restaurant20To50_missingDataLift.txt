@@ -1,0 +1,241 @@
+--- 'Restaurant20To50' Eksikliği ve 'destination' Orantılama Analizi ---
+                 Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+destination                                                        
+No Urgent Place               58.20              49.53         1.17
+Home                          21.69              25.52         0.85
+Work                          20.11              24.94         0.81
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'passanger' Orantılama Analizi ---
+           Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+passanger                                                    
+Alone                   53.97              57.59         0.94
+Friend(s)               26.98              26.00         1.04
+Kid(s)                  12.17               7.93         1.53
+Partner                  6.88               8.48         0.81
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'weather' Orantılama Analizi ---
+         Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+weather                                                    
+Rainy                 11.64               9.54         1.22
+Snowy                 11.11              11.08         1.00
+Sunny                 77.25              79.38         0.97
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'temperature' Orantılama Analizi ---
+             Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+temperature                                                    
+80                        52.91              51.47         1.03
+55                        27.51              30.27         0.91
+30                        19.58              18.26         1.07
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'coupon' Orantılama Analizi ---
+                       Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+coupon                                                                   
+Bar                                 19.05              15.90         1.20
+Carry out & Take away               17.46              18.87         0.93
+Coffee House                        29.10              31.50         0.92
+Restaurant(20-50)                   11.64              11.76         0.99
+Restaurant(<20)                     22.75              21.96         1.04
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'expiration' Orantılama Analizi ---
+            Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+expiration                                                    
+1d                        58.2              55.91         1.04
+2h                        41.8              44.09         0.95
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'gender' Orantılama Analizi ---
+        Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+gender                                                    
+Female               37.57              51.33         0.73
+Male                 62.43              48.67         1.28
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'age' Orantılama Analizi ---
+         Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+age                                                        
+21                    14.81              20.92         0.71
+26                    14.81              20.18         0.73
+31                    25.93              16.08         1.61
+36                      NaN              10.40          NaN
+41                     3.17               8.62         0.37
+46                    11.64               5.41         2.15
+50plus                17.99              14.10         1.28
+below21               11.64               4.31         2.70
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'maritalStatus' Orantılama Analizi ---
+                   Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+maritalStatus                                                        
+Divorced                         6.35               4.07         1.56
+Married partner                 49.21              40.21         1.22
+Single                          29.63              37.46         0.79
+Unmarried partner                3.17              17.23         0.18
+Widowed                         11.64               1.02        11.36
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'has_children' Orantılama Analizi ---
+              Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+has_children                                                    
+0                          35.98              58.59         0.61
+1                          64.02              41.41         1.55
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'education' Orantılama Analizi ---
+                                        Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+education                                                                                 
+Associates degree                                      NaN               9.09          NaN
+Bachelors degree                                     49.74              34.18         1.46
+Graduate degree (Masters or Doctorate)                 NaN              14.60          NaN
+High School Graduate                                 14.81               7.13         2.08
+Some High School                                       NaN               0.69          NaN
+Some college - no degree                             35.45              34.30         1.03
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'occupation' Orantılama Analizi ---
+                                           Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+occupation                                                                                   
+Architecture & Engineering                                NaN               1.38          NaN
+Arts Design Entertainment Sports & Media                  NaN               4.96          NaN
+Building & Grounds Cleaning & Maintenance                 NaN               0.35          NaN
+Business & Financial                                    14.81               4.29         3.45
+Community & Social Services                               NaN               1.90          NaN
+Computer & Mathematical                                  9.52              11.10         0.86
+Construction & Extraction                                 NaN               1.21          NaN
+Education&Training&Library                                NaN               7.43          NaN
+Farming Fishing & Forestry                                NaN               0.34          NaN
+Food Preparation & Serving Related                        NaN               2.35          NaN
+Healthcare Practitioners & Technical                      NaN               1.92          NaN
+Healthcare Support                                        NaN               1.91          NaN
+Installation Maintenance & Repair                         NaN               1.05          NaN
+Legal                                                     NaN               1.73          NaN
+Life Physical Social Science                              NaN               1.34          NaN
+Management                                              23.28               6.61         3.52
+Office & Administrative Support                           NaN               5.04          NaN
+Personal Care & Service                                   NaN               1.38          NaN
+Production Occupations                                    NaN               0.87          NaN
+Protective Service                                        NaN               1.38          NaN
+Retired                                                 11.64               3.90         2.98
+Sales & Related                                         11.11               8.62         1.29
+Student                                                 23.28              12.49         1.86
+Transportation & Material Moving                          NaN               1.72          NaN
+Unemployed                                               6.35              14.74         0.43
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'income' Orantılama Analizi ---
+                  Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+income                                                              
+$100000 or More                11.64              13.69         0.85
+$12500 - $24999                31.22              14.44         2.16
+$25000 - $37499                26.46              15.87         1.67
+$37500 - $49999                 3.17              14.23         0.22
+$50000 - $62499                14.81              13.08         1.13
+$62500 - $74999                 3.17               6.67         0.48
+$75000 - $87499                  NaN               6.76          NaN
+$87500 - $99999                 6.35               7.06         0.90
+Less than $12500                3.17               8.22         0.39
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'Bar' Orantılama Analizi ---
+       Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+Bar                                                      
+1~3                 40.14              19.66         2.04
+4~8                   NaN               8.56          NaN
+gt8                   NaN               2.77          NaN
+less1                 NaN              27.69          NaN
+never               59.86              41.32         1.45
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'CoffeeHouse' Orantılama Analizi ---
+             Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+CoffeeHouse                                                    
+1~3                         NaN              25.87          NaN
+4~8                       47.62              14.31         3.33
+gt8                         NaN               8.91          NaN
+less1                       NaN              27.15          NaN
+never                     52.38              23.76         2.20
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'CarryAway' Orantılama Analizi ---
+           Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+CarryAway                                                    
+1~3                     10.88              37.28         0.29
+4~8                     59.18              33.97         1.74
+gt8                       NaN              12.72          NaN
+less1                   14.97              14.81         1.01
+never                   14.97               1.22        12.26
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'RestaurantLessThan20' Orantılama Analizi ---
+                      Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+RestaurantLessThan20                                                    
+1~3                                55.78              42.82         1.30
+4~8                                14.29              28.52         0.50
+gt8                                  NaN              10.24          NaN
+less1                              14.97              16.67         0.90
+never                              14.97               1.75         8.54
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'Restaurant20To50' Orantılama Analizi ---
+                  Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+Restaurant20To50                                                    
+1~3                              NaN              26.33          NaN
+4~8                              NaN               5.83          NaN
+gt8                              NaN               2.11          NaN
+less1                            NaN              48.64          NaN
+never                            NaN              17.09          NaN
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'toCoupon_GEQ15min' Orantılama Analizi ---
+                   Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+toCoupon_GEQ15min                                                    
+1                               52.38              56.15         0.93
+0                               47.62              43.85         1.09
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'toCoupon_GEQ25min' Orantılama Analizi ---
+                   Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+toCoupon_GEQ25min                                                    
+0                               91.01              88.09         1.03
+1                                8.99              11.91         0.76
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'direction_opp' Orantılama Analizi ---
+               Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+direction_opp                                                    
+1                           79.89              78.52         1.02
+0                           20.11              21.48         0.94
+
+==================================================
+
+--- 'Restaurant20To50' Eksikliği ve 'Y' Orantılama Analizi ---
+   Boş Bırakanlar (%)  Tüm Veri Seti (%)  Oran (Lift)
+Y                                                    
+1               55.56              56.84         0.98
+0               44.44              43.16         1.03
+
+==================================================

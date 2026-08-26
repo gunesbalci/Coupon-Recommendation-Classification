@@ -3,6 +3,9 @@ import numpy as np
 
 df = pd.read_csv("Dataset/in-vehicle-coupon-recommendation.csv")
 
+#DROP DUPLICATE ROWS
+df = df.drop_duplicates()
+
 #DROP COLUMNS
 df = df.drop(columns=['car', 'direction_same', 'toCoupon_GEQ5min'])
 

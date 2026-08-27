@@ -7,7 +7,7 @@ import warnings as wr
 from scipy.stats import chi2_contingency
 wr.filterwarnings('ignore')
 
-df = pd.read_csv("Dataset/in-vehicle-coupon-recommendation.csv")
+df = pd.read_csv("Dataset/preprocessed_dataset.csv")
 
 def analyze_dataset():
     print(df.head()) #top 5 rows of the dataset
@@ -49,7 +49,7 @@ def barPlot_dataset(columnName,fig_width=10):
     plt.ylabel('Count')
     plt.show()
 
-def univariate_analysis(column, save_path="Results/Version1/Bivariate"):
+def univariate_analysis(column, df, save_path="Results/Analyze/Version1/Univariate"):
     # Çapraz tabloyu yüzdelik olarak hesapla
     ct = pd.crosstab(df[column], df["Y"], normalize="index") * 100
 
@@ -95,7 +95,7 @@ import seaborn as sns
 
 
 def faceted_bivariate_analysis(
-    x_col, hue_col, save_path="Results/Analyze/Version1/Faceted_Bivariate"):
+    x_col, hue_col, df, save_path="Results/Analyze/Version1/Faceted_Bivariate"):
 
   g = sns.catplot(
       data=df,
@@ -142,7 +142,7 @@ def calculate_cramers_v(series1, series2):
 
   return (chi2 / n) / min(k - 1, r - 1)
 
-def plot_cramers_v_matrix():
+def plot_cramers_v_matrix(df):
   columns = df.columns
 
   cramers_matrix = pd.DataFrame(index=columns, columns=columns, dtype=float)
@@ -195,11 +195,12 @@ def calculate_missing_lift(target_column, feature_to_check):
   print("\n" + "=" * 50 + "\n")
 
 def main():
-    #analyze_dataset()
+    analyze_dataset()
+    univariate_analysis("coupon_frequency", df)
     #plot_cramers_v_matrix()
     
     #for column in df.columns:
-        #univariate_analysis(column)
+        #univariate_analysis(column, df)
         #barPlot_dataset(column)
         #calculate_missing_lift('Restaurant20To50',column)
         #Bar,CoffeeHouse,CarryAway,RestaurantLessThan20,Restaurant20To50
@@ -210,7 +211,7 @@ def main():
     #faceted_bivariate_analysis(x_col="weather", hue_col="temperature")
     #faceted_bivariate_analysis(x_col="expiration", hue_col="coupon")
     #faceted_bivariate_analysis(x_col="income", hue_col="coupon")
-    faceted_bivariate_analysis(x_col="time", hue_col="has_children")
+    #faceted_bivariate_analysis(x_col="time", hue_col="has_children", df=df)
 
 if __name__ == "__main__":
     main()

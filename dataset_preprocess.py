@@ -1,40 +1,62 @@
 import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 df = pd.read_csv("Dataset/in-vehicle-coupon-recommendation.csv")
 
-#DROP DUPLICATE ROWS
-df = df.drop_duplicates()
-#DROP COLUMNS
-df = df.drop(columns=['car', 'direction_same', 'toCoupon_GEQ5min'])
+def drop_columns(data):
+    #DROP COLUMNS
+    data = data.drop(columns=['car', 'direction_same', 'toCoupon_GEQ5min'])
+    return data
 
-#FILL MISSING VALUES
-missing_columns = df.columns[df.isnull().any()]
-for col in missing_columns:
-    mod_deger = df[col].mode()[0]
-    df[col] = df[col].fillna(mod_deger)
-    print(f"Missing values in column '{col}' filled with '{mod_deger}'.")
+def fill_missing_values(data,data_opt):
+    missing_columns = data.columns[data.isnull().any()]
+    for col in missing_columns:
+        mod_deger = data[col].mode()[0]
+        data[col] = data[col].fillna(mod_deger)
+        if data_opt is not None:
+            data_opt[col] = data_opt[col].fillna(mod_deger)
+        print(f"Missing values in column '{col}' filled with '{mod_deger}'.")
+    return data, data_opt
 
-#NEW FEATURES - to_coupon 
-conditions = [
-    (df["toCoupon_GEQ15min"] == 0) & (df["toCoupon_GEQ25min"] == 0),
-    (df["toCoupon_GEQ15min"] == 1) & (df["toCoupon_GEQ25min"] == 0),
-    (df["toCoupon_GEQ25min"] == 1),
-]
-choices = [0, 1, 2]
-df["to_coupon"] = np.select(conditions, choices, default=-1)
-df = df.drop(columns=['toCoupon_GEQ15min', 'toCoupon_GEQ25min'])
+def create_new_features(data):
+    #NEW FEATURES - to_coupon 
+    conditions = [
+        (data["toCoupon_GEQ15min"] == 0) & (data["toCoupon_GEQ25min"] == 0),
+        (data["toCoupon_GEQ15min"] == 1) & (data["toCoupon_GEQ25min"] == 0),
+        (data["toCoupon_GEQ25min"] == 1),
+    ]
+    choices = [0, 1, 2]
+    data["to_coupon"] = np.select(conditions, choices, default=-1)
+    data = data.drop(columns=['toCoupon_GEQ15min', 'toCoupon_GEQ25min'])
 
-#NEW FEATURES - coupon_frequency
-conditions = [
-    (df["coupon"] == "Restaurant(<20)"),
-    (df["coupon"] == "Coffee House"),
-    (df["coupon"] == "Carry out & Take away"),
-    (df["coupon"] == "Bar"),
-    (df["coupon"] == "Restaurant(20-50)")
-]
-choices = [df["RestaurantLessThan20"], df["CoffeeHouse"], df["CarryAway"], df["Bar"], df["Restaurant20To50"]]
-df["coupon_frequency"] = np.select(conditions, choices, default=np.nan)
-df = df.drop(columns=['RestaurantLessThan20', 'CoffeeHouse', 'CarryAway', 'Bar', 'Restaurant20To50'])
+    #NEW FEATURES - coupon_frequency
+    conditions = [
+        (data["coupon"] == "Restaurant(<20)"),
+        (data["coupon"] == "Coffee House"),
+        (data["coupon"] == "Carry out & Take away"),
+        (data["coupon"] == "Bar"),
+        (data["coupon"] == "Restaurant(20-50)")
+    ]
+    choices = [data["RestaurantLessThan20"], data["CoffeeHouse"], data["CarryAway"], data["Bar"], data["Restaurant20To50"]]
+    data["coupon_frequency"] = np.select(conditions, choices, default=np.nan)
+    data = data.drop(columns=['RestaurantLessThan20', 'CoffeeHouse', 'CarryAway', 'Bar', 'Restaurant20To50'])
+    return data
 
-df.to_csv("Dataset/preprocessed_dataset.csv", index=False)
+def create_train_test_datasets(data):
+    data = data.drop_duplicates()
+    
+    # TRAIN-TEST SPLIT
+    X = data.drop(columns=["Y"])
+    y = data["Y"]
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.20, random_state=42, stratify=y
+    )
+
+    X_train = drop_columns(X_train)
+    X_test = drop_columns(X_test)
+    X_train, X_test = fill_missing_values(X_train, X_test)
+    X_train = create_new_features(X_train)
+    X_test = create_new_features(X_test)
+
+    return X_train, X_test, y_train, y_test

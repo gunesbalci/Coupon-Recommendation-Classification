@@ -1,0 +1,18 @@
+Model Adı: LightGBM
+========================================
+Accuracy: 0.7244
+ROC-AUC Skoru: 0.7966
+
+Confusion Matrix: 
+[[ 725  366]
+ [ 329 1102]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.69      0.66      0.68      1091
+           1       0.75      0.77      0.76      1431
+
+    accuracy                           0.72      2522
+   macro avg       0.72      0.72      0.72      2522
+weighted avg       0.72      0.72      0.72      2522

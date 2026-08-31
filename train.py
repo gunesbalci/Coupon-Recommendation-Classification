@@ -1,5 +1,6 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score, roc_curve
 from dataset_encode import encode_train_test_datasets
@@ -90,3 +91,23 @@ def train_AdaBoost(X_train, X_test, y_train, y_test, print_on):
     y_pred = model.predict(X_test)
     y_pred_proba = model.predict_proba(X_test)[:, 1]
     return calc_visualize_result(y_test,y_pred,y_pred_proba,"XAdaBoost", print_on)
+
+def train(model_name, X_train, X_test, y_train, y_test, print_on):
+
+    model = LogisticRegression(max_iter=1000, random_state=42)
+    if model_name == "RandomForest":
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+    elif model_name == "XGBoost":
+        model = XGBClassifier(
+            n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42) 
+    elif model_name == "XAdaBoost":
+        model = AdaBoostClassifier(
+            n_estimators=100,learning_rate=1.0,random_state=42)   
+    elif model_name == "LightGBM":
+        model = LGBMClassifier(
+            n_estimators=100,learning_rate=1.0,random_state=42,objective="binary")
+
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    y_pred_proba = model.predict_proba(X_test)[:, 1]
+    return calc_visualize_result(y_test,y_pred,y_pred_proba,model_name,print_on)

@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+import re
 import category_encoders as ce
 
 def ordinal_encode(data):
@@ -69,4 +69,7 @@ def encode_train_test_datasets(x_train, x_test, y_train, apply_target_encode):
     x_train, x_test = one_hot_encode(x_train, x_test, apply_target_encode)
     if apply_target_encode:
         x_train, x_test = target_encode(x_train, x_test, y_train)
+
+    x_train.columns = [re.sub(r"[\[\]<>]", "_", str(col)) for col in x_train.columns]
+    x_test.columns = [re.sub(r"[\[\]<>]", "_", str(col)) for col in x_test.columns]
     return x_train, x_test

@@ -1,17 +1,17 @@
 Model Adı: RandomForest
 ========================================
 Accuracy: 0.7220
-ROC-AUC Skoru: 0.7968
+ROC-AUC Skoru: 0.7857
 
 Confusion Matrix: 
-[[ 699  392]
- [ 309 1122]]
+[[ 687  404]
+ [ 297 1134]]
 
 Classification Report:
               precision    recall  f1-score   support
 
-           0       0.69      0.64      0.67      1091
-           1       0.74      0.78      0.76      1431
+           0       0.70      0.63      0.66      1091
+           1       0.74      0.79      0.76      1431
 
     accuracy                           0.72      2522
    macro avg       0.72      0.71      0.71      2522

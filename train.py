@@ -1,5 +1,6 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score, roc_curve
 from dataset_encode import encode_train_test_datasets
 from dataset_preprocess import create_train_test_datasets
@@ -25,15 +26,15 @@ def calc_visualize_result(y_test, y_pred, y_pred_proba, model_name, print_on):
         print("Confusion Matrix:\n", c_matrix)
         print(f"ROC-AUC Skoru: {auc_score:.4f}")
 
-    txt_filename = f"Results/Test/{model_name}_results.txt"
-    with open(txt_filename, "w", encoding="utf-8") as f:
-        f.write(f"Model Adı: {model_name}\n")
-        f.write("=" * 40 + "\n")
-        f.write(f"Accuracy: {acc:.4f}\n")
-        f.write(f"ROC-AUC Skoru: {auc_score:.4f}\n\n")
-        f.write(f"Confusion Matrix: \n{c_matrix}\n\n")
-        f.write("Classification Report:\n")
-        f.write(c_report)
+        txt_filename = f"Results/Test/{model_name}_results.txt"
+        with open(txt_filename, "w", encoding="utf-8") as f:
+            f.write(f"Model Adı: {model_name}\n")
+            f.write("=" * 40 + "\n")
+            f.write(f"Accuracy: {acc:.4f}\n")
+            f.write(f"ROC-AUC Skoru: {auc_score:.4f}\n\n")
+            f.write(f"Confusion Matrix: \n{c_matrix}\n\n")
+            f.write("Classification Report:\n")
+            f.write(c_report)
 
     fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
     plt.figure(figsize=(8, 6))
@@ -54,8 +55,8 @@ def calc_visualize_result(y_test, y_pred, y_pred_proba, model_name, print_on):
     plt.grid(True)
     if print_on: 
         plt.show()
-    img_filename = f"Results/Test/{model_name}_roc_curve.png"
-    plt.savefig(img_filename, dpi=300, bbox_inches="tight")
+        img_filename = f"Results/Test/{model_name}_roc_curve.png"
+        plt.savefig(img_filename, dpi=300, bbox_inches="tight")
     plt.close()
 
     return auc_score
@@ -73,3 +74,11 @@ def train_RandomForest(X_train, X_test, y_train, y_test, print_on):
     y_pred = rf_model.predict(X_test)
     y_pred_proba = rf_model.predict_proba(X_test)[:, 1]
     return calc_visualize_result(y_test,y_pred,y_pred_proba,"RandomForest", print_on)
+
+def train_XGBoost(X_train, X_test, y_train, y_test, print_on):
+    xgb_model = XGBClassifier(
+    n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)
+    xgb_model.fit(X_train, y_train)
+    y_pred = xgb_model.predict(X_test)
+    y_pred_proba = xgb_model.predict_proba(X_test)[:, 1]
+    return calc_visualize_result(y_test,y_pred,y_pred_proba,"XGBoost", print_on)

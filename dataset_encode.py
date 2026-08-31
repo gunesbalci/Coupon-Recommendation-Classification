@@ -26,11 +26,15 @@ def ordinal_encode(data):
     data["coupon_frequency"] = data["coupon_frequency"].map(frequency_map)
     return data
 
-def one_hot_encode(x_train, x_test):
-    x_train = pd.get_dummies(x_train, dtype=int, columns=['destination', 'passanger', 
-                                'weather', 'coupon', 'gender', 'maritalStatus'])
-    x_test = pd.get_dummies(x_test, dtype=int, columns=['destination', 'passanger',
-                                'weather', 'coupon', 'maritalStatus'])
+def one_hot_encode(x_train, x_test, apply_target_encode=True):
+    if not apply_target_encode:
+        encode_columns = ['destination', 'passanger', 'occupation',
+                            'weather', 'coupon', 'maritalStatus']
+    else:
+        encode_columns = ['destination', 'passanger', 
+                            'weather', 'coupon', 'maritalStatus']
+    x_train = pd.get_dummies(x_train, dtype=int, columns=encode_columns)
+    x_test = pd.get_dummies(x_test, dtype=int, columns=encode_columns)
 
     # Train ve test setlerindeki sütun isimlerini eşitle (Biri diğerinde eksik kalmasın)
     x_train, x_test = x_train.align(x_test, join="left", axis=1, fill_value=0)
@@ -46,19 +50,23 @@ def target_encode(x_train, x_test, y_train):
     x_test["occupation"] = target_encoder.transform(x_test["occupation"])
     return x_train, x_test
 
-def fix_expiration(data):
+def fix_expiration_gender(data):
     # expiration sütunundaki değerleri 0 ve 1 olarak değiştir
     expiration_map = {"1d": 0, "2h": 1}
     data["expires_soon"] = data["expiration"].map(expiration_map)
     data = data.drop(columns=['expiration'])
+
+    gender_map = {"Male": 0, "Female": 1}
+    data["gender"] = data["gender"].map(gender_map)
     return data
 
-def encode_train_test_datasets(x_train, x_test, y_train):
+def encode_train_test_datasets(x_train, x_test, y_train, apply_target_encode):
     x_train = ordinal_encode(x_train)
     x_test = ordinal_encode(x_test)
-    x_train = fix_expiration(x_train)
-    x_test = fix_expiration(x_test)
+    x_train = fix_expiration_gender(x_train)
+    x_test = fix_expiration_gender(x_test)
 
-    x_train, x_test = one_hot_encode(x_train, x_test)
-    x_train, x_test = target_encode(x_train, x_test, y_train)
+    x_train, x_test = one_hot_encode(x_train, x_test, apply_target_encode)
+    if apply_target_encode:
+        x_train, x_test = target_encode(x_train, x_test, y_train)
     return x_train, x_test

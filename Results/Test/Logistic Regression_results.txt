@@ -1,0 +1,18 @@
+Model Adı: Logistic Regression
+========================================
+Accuracy: 0.6951
+ROC-AUC Skoru: 0.7423
+
+Confusion Matrix: 
+[[ 658  433]
+ [ 336 1095]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.66      0.60      0.63      1091
+           1       0.72      0.77      0.74      1431
+
+    accuracy                           0.70      2522
+   macro avg       0.69      0.68      0.69      2522
+weighted avg       0.69      0.70      0.69      2522

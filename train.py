@@ -2,6 +2,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
+from catboost import CatBoostClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score, roc_curve
 from dataset_encode import encode_train_test_datasets
 from dataset_preprocess import create_train_test_datasets
@@ -106,6 +107,9 @@ def train(model_name, X_train, X_test, y_train, y_test, print_on):
     elif model_name == "LightGBM":
         model = LGBMClassifier(
             n_estimators=100,learning_rate=1.0,random_state=42,objective="binary")
+    elif model_name == "CatBoost":
+        model = CatBoostClassifier(
+            n_estimators=100, learning_rate=0.1, random_state=42, verbose=False)
 
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)

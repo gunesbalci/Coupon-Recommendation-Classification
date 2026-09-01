@@ -1,0 +1,18 @@
+Model Adı: CatBoost
+========================================
+Accuracy: 0.7419
+ROC-AUC Skoru: 0.8037
+
+Confusion Matrix: 
+[[ 682  409]
+ [ 242 1189]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.74      0.63      0.68      1091
+           1       0.74      0.83      0.79      1431
+
+    accuracy                           0.74      2522
+   macro avg       0.74      0.73      0.73      2522
+weighted avg       0.74      0.74      0.74      2522

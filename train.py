@@ -10,6 +10,7 @@ from dataset_encode import encode_train_test_datasets
 from dataset_preprocess import create_train_test_datasets
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 # EXTRACTING TRAIN AND TEST DATA FROM DATASET
 def extract_data(apply_target_encode=True):
@@ -109,3 +110,39 @@ def train(model_name, X_train, X_test, y_train, y_test, print_on):
     y_pred = model.predict(X_test)
     y_pred_proba = model.predict_proba(X_test)[:, 1]
     return calc_visualize_result(y_test,y_pred,y_pred_proba,model_name,print_on)
+
+def create_heatmap(results_data):
+    models = [
+        "Logistic Regression",
+        "Random Forest Classifier",
+        "XGBoost Classifier",
+        "AdaBoost Classifier",
+        "LightGBM Classifier",
+        "CatBoost Classifier",
+        "ExtraTrees Classifier",
+        "HistGradientBoosting Classifier",
+        "Bagging Classifier",
+        "Stacking Classifier",
+        "Voting Classifier"
+    ]
+
+    df_scores = pd.DataFrame(results_data, index=models)
+
+    plt.figure(figsize=(10, 6))
+    sns.heatmap(
+        df_scores,
+        annot=True,  # Hücrelerin içine skorları (sayıları) yazar
+        fmt=".3f", 
+        cmap="RdYlGn", 
+        linewidths=0.5,  # Hücreler arasına ince çizgiler koyar
+        cbar=True,
+    )  
+
+    plt.title("Heat Maps for Test ROC-AUC Score", fontsize=14)
+    plt.xlabel("Dataset Varieties", fontsize=12)
+    plt.ylabel("Model", fontsize=12)
+    plt.xticks(rotation=0)
+    plt.yticks(rotation=0)
+
+    plt.tight_layout()
+    plt.show()

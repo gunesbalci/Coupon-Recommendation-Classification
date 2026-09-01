@@ -1,6 +1,7 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import (RandomForestClassifier, AdaBoostClassifier,
-    ExtraTreesClassifier, HistGradientBoostingClassifier)
+    ExtraTreesClassifier, HistGradientBoostingClassifier, BaggingClassifier,
+    StackingClassifier, VotingClassifier)
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from catboost import CatBoostClassifier
@@ -64,36 +65,6 @@ def calc_visualize_result(y_test, y_pred, y_pred_proba, model_name, print_on):
 
     return auc_score
 
-def train_LogisticReg(X_train, X_test, y_train, y_test, print_on):
-    model = LogisticRegression(max_iter=1000, random_state=42)
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-    y_pred_proba = model.predict_proba(X_test)[:, 1]
-    return calc_visualize_result(y_test, y_pred, y_pred_proba,"Logistic Regression", print_on)
-
-def train_RandomForest(X_train, X_test, y_train, y_test, print_on):
-    rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
-    rf_model.fit(X_train, y_train)
-    y_pred = rf_model.predict(X_test)
-    y_pred_proba = rf_model.predict_proba(X_test)[:, 1]
-    return calc_visualize_result(y_test,y_pred,y_pred_proba,"RandomForest", print_on)
-
-def train_XGBoost(X_train, X_test, y_train, y_test, print_on):
-    xgb_model = XGBClassifier(
-        n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)
-    xgb_model.fit(X_train, y_train)
-    y_pred = xgb_model.predict(X_test)
-    y_pred_proba = xgb_model.predict_proba(X_test)[:, 1]
-    return calc_visualize_result(y_test,y_pred,y_pred_proba,"XGBoost", print_on)
-
-def train_AdaBoost(X_train, X_test, y_train, y_test, print_on):
-    model = AdaBoostClassifier(
-        n_estimators=100,learning_rate=1.0,random_state=42)
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-    y_pred_proba = model.predict_proba(X_test)[:, 1]
-    return calc_visualize_result(y_test,y_pred,y_pred_proba,"XAdaBoost", print_on)
-
 def train(model_name, X_train, X_test, y_train, y_test, print_on):
 
     model = LogisticRegression(max_iter=1000, random_state=42)
@@ -104,15 +75,35 @@ def train(model_name, X_train, X_test, y_train, y_test, print_on):
             n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42) 
     elif model_name == "XAdaBoost":
         model = AdaBoostClassifier(
-            n_estimators=100,learning_rate=1.0,random_state=42)   
+            n_estimators=100,learning_rate=0.1,random_state=42)   
     elif model_name == "LightGBM":
         model = LGBMClassifier(
-            n_estimators=100,learning_rate=1.0,random_state=42,objective="binary")
+            n_estimators=100,learning_rate=0.1,random_state=42,objective="binary")
     elif model_name == "CatBoost":
         model = CatBoostClassifier(
             n_estimators=100, learning_rate=0.1, random_state=42, verbose=False)
     elif model_name == "ExtraTrees":
         model = ExtraTreesClassifier(n_estimators=100, random_state=42)
+    elif model_name == "HistGradientBoosting":
+        model = HistGradientBoostingClassifier(random_state=42)
+    elif model_name == "Bagging":
+        model = BaggingClassifier(n_estimators=100, random_state=42)
+    elif model_name == "Stacking":
+        estimators = [
+            ("rf", RandomForestClassifier(n_estimators=100, random_state=42)),
+            ("xgb", XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)),
+            ("lgbm", LGBMClassifier(n_estimators=100, learning_rate=0.1, random_state=42, objective="binary")),
+        ]
+        model = StackingClassifier(estimators=estimators, final_estimator=LogisticRegression())
+    elif model_name == "Voting":
+        model = VotingClassifier(
+            estimators=[
+                ("lgbm", LGBMClassifier(n_estimators=100, learning_rate=0.1, random_state=42, objective="binary")),
+                ("xgb", XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)),
+                ("hgb", HistGradientBoostingClassifier(random_state=42)),
+            ],
+            voting="soft",
+        )
 
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)

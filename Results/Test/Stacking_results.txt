@@ -1,0 +1,18 @@
+Model Adı: Stacking
+========================================
+Accuracy: 0.7490
+ROC-AUC Skoru: 0.8173
+
+Confusion Matrix: 
+[[ 715  376]
+ [ 257 1174]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.74      0.66      0.69      1091
+           1       0.76      0.82      0.79      1431
+
+    accuracy                           0.75      2522
+   macro avg       0.75      0.74      0.74      2522
+weighted avg       0.75      0.75      0.75      2522

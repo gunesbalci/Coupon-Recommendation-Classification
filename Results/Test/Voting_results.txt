@@ -1,0 +1,18 @@
+Model Adı: Voting
+========================================
+Accuracy: 0.7498
+ROC-AUC Skoru: 0.8157
+
+Confusion Matrix: 
+[[ 705  386]
+ [ 245 1186]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.74      0.65      0.69      1091
+           1       0.75      0.83      0.79      1431
+
+    accuracy                           0.75      2522
+   macro avg       0.75      0.74      0.74      2522
+weighted avg       0.75      0.75      0.75      2522

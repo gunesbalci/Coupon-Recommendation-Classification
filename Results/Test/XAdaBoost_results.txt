@@ -1,18 +1,18 @@
 Model Adı: XAdaBoost
 ========================================
-Accuracy: 0.7074
-ROC-AUC Skoru: 0.7547
+Accuracy: 0.6947
+ROC-AUC Skoru: 0.7479
 
 Confusion Matrix: 
-[[ 628  463]
- [ 275 1156]]
+[[ 513  578]
+ [ 192 1239]]
 
 Classification Report:
               precision    recall  f1-score   support
 
-           0       0.70      0.58      0.63      1091
-           1       0.71      0.81      0.76      1431
+           0       0.73      0.47      0.57      1091
+           1       0.68      0.87      0.76      1431
 
-    accuracy                           0.71      2522
-   macro avg       0.70      0.69      0.69      2522
-weighted avg       0.71      0.71      0.70      2522
+    accuracy                           0.69      2522
+   macro avg       0.70      0.67      0.67      2522
+weighted avg       0.70      0.69      0.68      2522

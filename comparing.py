@@ -79,7 +79,7 @@ def train(model_name, X_train, X_test, y_train, y_test, print_on):
             n_estimators=100,learning_rate=0.1,random_state=42)   
     elif model_name == "LightGBM":
         model = LGBMClassifier(
-            n_estimators=100,learning_rate=0.1,random_state=42,objective="binary")
+            n_estimators=100,learning_rate=0.1,random_state=42,objective="binary",verbosity=-1)
     elif model_name == "CatBoost":
         model = CatBoostClassifier(
             n_estimators=100, learning_rate=0.1, random_state=42, verbose=False)
@@ -93,13 +93,13 @@ def train(model_name, X_train, X_test, y_train, y_test, print_on):
         estimators = [
             ("rf", RandomForestClassifier(n_estimators=100, random_state=42)),
             ("xgb", XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)),
-            ("lgbm", LGBMClassifier(n_estimators=100, learning_rate=0.1, random_state=42, objective="binary")),
+            ("lgbm", LGBMClassifier(n_estimators=100, learning_rate=0.1, random_state=42, objective="binary", verbosity=-1)),
         ]
         model = StackingClassifier(estimators=estimators, final_estimator=LogisticRegression())
     elif model_name == "Voting":
         model = VotingClassifier(
             estimators=[
-                ("lgbm", LGBMClassifier(n_estimators=100, learning_rate=0.1, random_state=42, objective="binary")),
+                ("lgbm", LGBMClassifier(n_estimators=100, learning_rate=0.1, random_state=42, objective="binary", verbosity=-1)),
                 ("xgb", XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)),
                 ("hgb", HistGradientBoostingClassifier(random_state=42)),
             ],

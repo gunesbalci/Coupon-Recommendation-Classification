@@ -1,0 +1,2 @@
+En iyi parametreler: {'boosting_type': 'gbdt', 'n_estimators': 582, 'learning_rate': 0.09135301766719553, 'max_depth': 6, 'num_leaves': 110, 'min_child_samples': 21, 'subsample': 0.9841372878332021, 'colsample_bytree': 0.6359476359169153}
+En iyi AUC Skoru: 0.8356

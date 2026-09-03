@@ -2,6 +2,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import (RandomForestClassifier, AdaBoostClassifier,
     ExtraTreesClassifier, HistGradientBoostingClassifier, BaggingClassifier,
     StackingClassifier, VotingClassifier)
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+from sklearn.svm import SVC
 from lightgbm import LGBMClassifier
 from xgboost import XGBClassifier
 from catboost import CatBoostClassifier
@@ -71,6 +75,10 @@ def train(model_name, X_train, X_test, y_train, y_test, print_on):
     model = LogisticRegression(max_iter=1000, random_state=42)
     if model_name == "RandomForest":
         model = RandomForestClassifier(n_estimators=100, random_state=42)
+    elif model_name == "Support Vector Machine":
+        model = make_pipeline(
+            StandardScaler(),
+            CalibratedClassifierCV(SVC(random_state=42), ensemble=False))
     elif model_name == "XGBoost":
         model = XGBClassifier(
             n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42) 
@@ -91,8 +99,8 @@ def train(model_name, X_train, X_test, y_train, y_test, print_on):
         model = BaggingClassifier(n_estimators=100, random_state=42)
     elif model_name == "Stacking":
         estimators = [
-            ("rf", RandomForestClassifier(n_estimators=100, random_state=42)),
-            ("xgb", XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42)),
+            ("svm", make_pipeline(StandardScaler(),CalibratedClassifierCV(SVC(random_state=42), ensemble=False))),
+            ("bag", BaggingClassifier(n_estimators=100, random_state=42)),
             ("lgbm", LGBMClassifier(n_estimators=100, learning_rate=0.1, random_state=42, objective="binary", verbosity=-1)),
         ]
         model = StackingClassifier(estimators=estimators, final_estimator=LogisticRegression())
@@ -115,6 +123,7 @@ def create_heatmap(results_data):
     models = [
         "Logistic Regression",
         "Random Forest Classifier",
+        "Support Vector Machine",
         "XGBoost Classifier",
         "AdaBoost Classifier",
         "LightGBM Classifier",

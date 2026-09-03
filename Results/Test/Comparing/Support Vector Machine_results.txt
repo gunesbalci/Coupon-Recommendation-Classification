@@ -1,0 +1,18 @@
+Model Adı: Support Vector Machine
+========================================
+Accuracy: 0.7213
+ROC-AUC Skoru: 0.7776
+
+Confusion Matrix: 
+[[ 685  406]
+ [ 297 1134]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.70      0.63      0.66      1091
+           1       0.74      0.79      0.76      1431
+
+    accuracy                           0.72      2522
+   macro avg       0.72      0.71      0.71      2522
+weighted avg       0.72      0.72      0.72      2522

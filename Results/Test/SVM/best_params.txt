@@ -1,0 +1,2 @@
+En İyi SVM Skoru: 0.7833372085053941
+En İyi SVM Parametreleri: {'C': 2.0016316871226083, 'kernel': 'rbf', 'gamma': 'auto'}

@@ -1,0 +1,2 @@
+En İyi Stacking Skoru: 0.8373545449363031
+En İyi Stacking Parametreleri: {'meta_C': 9.91136061063686, 'passthrough': False}

@@ -131,3 +131,9 @@ def Kfold_CV(data):
     # 3. Sonuçları yazdıralım
     print(f"Her Fold'un AUC Skorları: {[round(s, 4) for s in cv_scores]}")
     print(f"Ortalama CV AUC Skoru: {np.mean(cv_scores):.4f} (+/- {np.std(cv_scores):.4f})")
+
+def get_best_model():
+    return LGBMClassifier(boosting_type='gbdt', n_estimators=582,
+        learning_rate=0.09135301766719553, max_depth=6, num_leaves=110,
+        min_child_samples=21, subsample=0.9841372878332021,
+        colsample_bytree=0.6359476359169153, verbosity=-1, random_state=42, objective='binary')

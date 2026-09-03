@@ -1,0 +1,2 @@
+En İyi Skor: 0.8229606826964281
+En İyi Parametreler: {'max_depth': 18, 'n_estimators': 181, 'max_samples': 0.932046941974057, 'max_features': 0.6490147364580608, 'bootstrap': True}

@@ -1,0 +1,16 @@
+Model: stacking
+Best AUC Score: 0.8254
+Parameters for Best AUC: {'meta_C': 1.2934508669159068, 'passthrough': False}
+
+Best F1 Score: 0.7951
+Parameters for Best F1: {'meta_C': 0.002906966654561084, 'passthrough': False}
+
+Best Log Loss Value: 0.5090
+Parameters for Best Log Loss: {'meta_C': 7.536579499191063, 'passthrough': True}
+
+Best Precision Score: 0.7671
+Parameters for Best Precision: {'meta_C': 7.536579499191063, 'passthrough': True}
+
+Best Recall Score: 0.8647
+Parameters for Best Recall: {'meta_C': 0.002906966654561084, 'passthrough': False}
+--------------------------------------------------------------------------------

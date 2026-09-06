@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import numpy as np
-from sklearn.ensemble import BaggingClassifier
+from sklearn.ensemble import BaggingClassifier, StackingClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
@@ -13,6 +14,34 @@ from sklearn.model_selection import train_test_split
 from comparing import extract_data
 import warnings
 warnings.filterwarnings("ignore")
+
+def get_best_model(model_type, best_params):
+    if model_type == 'lgbm':
+        model = LGBMClassifier(**best_params, random_state=42, objective='binary', verbosity=-1, n_jobs=-1)
+    elif model_type == 'bagging':
+        base_tree = DecisionTreeClassifier(max_depth=best_params.get('max_depth', 10), random_state=42)
+        best_params = {k: v for k, v in best_params.items() if k != 'max_depth'}
+        model = BaggingClassifier(estimator=base_tree, **best_params, random_state=42, n_jobs=-1)
+    elif model_type == 'svm':
+        model = Pipeline([
+            ('scaler', StandardScaler()),
+            ('svc', SVC(C=best_params.get('C', 1.0), kernel=best_params.get('kernel', 'rbf'), 
+                        gamma=best_params.get('gamma', 'scale'), probability=True, random_state=42))
+        ])
+    elif model_type == 'stacking':
+        estimators = [
+            ('lgb', get_best_model("lgbm", lgbm_best_logloss_params)),
+            ('bagging', get_best_model("bagging", bagging_best_logloss_params)),
+            ('svm', get_best_model("svm", svm_best_logloss_params))
+        ]
+        model = StackingClassifier(
+            estimators=estimators,
+            final_estimator=LogisticRegression(C=best_params.get('meta_C', 1.0), random_state=42),
+            cv=5,
+            passthrough=best_params.get('passthrough', False),
+            n_jobs=-1
+        )
+    return model
 
 def evaluate_with_repeated_splits(best_params, model_type='lgbm', n_repeats=5, best_metric="ROC-AUC"):
     test_roc_scores = []
@@ -25,19 +54,7 @@ def evaluate_with_repeated_splits(best_params, model_type='lgbm', n_repeats=5, b
         current_seed = i * 42  
         X_train, X_test, y_train, y_test = extract_data(apply_target_encode=True, random_state=current_seed)
         
-        if model_type == 'lgbm':
-            model = LGBMClassifier(**best_params, random_state=42, objective='binary', verbosity=-1, n_jobs=-1)
-        elif model_type == 'bagging':
-            base_tree = DecisionTreeClassifier(max_depth=best_params.get('max_depth', 10), random_state=42)
-            best_params = {k: v for k, v in best_params.items() if k != 'max_depth'}
-            model = BaggingClassifier(estimator=base_tree, **best_params, random_state=42, n_jobs=-1)
-        elif model_type == 'svm':
-            model = Pipeline([
-                ('scaler', StandardScaler()),
-                ('svc', SVC(C=best_params.get('C', 1.0), kernel=best_params.get('kernel', 'rbf'), 
-                            gamma=best_params.get('gamma', 'scale'), probability=True, random_state=42))
-            ])
-            
+        model = get_best_model(model_type, best_params)    
         model.fit(X_train, y_train)
         
         y_pred_proba = model.predict_proba(X_test)[:, 1]
@@ -122,3 +139,9 @@ svm_best_f1_params = {'C': 1.7234532170464567, 'kernel': 'rbf', 'gamma': 'scale'
 svm_best_logloss_params = {'C': 1.7234532170464567, 'kernel': 'rbf', 'gamma': 'scale'}
 svm_best_precision_params = {'C': 4.936332527260067, 'kernel': 'rbf', 'gamma': 'scale'}
 svm_best_recall_params = {'C': 0.021519260344323853, 'kernel': 'rbf', 'gamma': 'auto'}
+
+stacking_best_roc_auc_params = {'meta_C': 1.2934508669159068, 'passthrough': False}
+stacking_best_f1_params = {'meta_C': 0.002906966654561084, 'passthrough': False}
+stacking_best_logloss_params = {'meta_C': 7.536579499191063, 'passthrough': True}
+stacking_best_precision_params = {'meta_C': 7.536579499191063, 'passthrough': True}
+stacking_best_recall_params = {'meta_C': 0.002906966654561084, 'passthrough': False}

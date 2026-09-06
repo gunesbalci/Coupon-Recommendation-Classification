@@ -1,6 +1,9 @@
+from train_models import *
 import lightgbm
 import numpy as np
 from lightgbm import LGBMClassifier
+from sklearn.ensemble import StackingClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import roc_auc_score, average_precision_score, f1_score, precision_score, recall_score, log_loss
 from sklearn.ensemble import BaggingClassifier
@@ -60,6 +63,24 @@ def get_SVM_trial_Model(trial):
         ))
     ])
 
+def get_Stacking_trial_Model(trial):
+    meta_C = trial.suggest_float('meta_C', 0.001, 10.0, log=True)
+    passthrough = trial.suggest_categorical('passthrough', [True, False])
+    
+    estimators = [
+        ('lgb', get_best_model('lgbm', lgbm_best_logloss_params)),
+        ('bagging', get_best_model('bagging', bagging_best_logloss_params)),
+        ('svm', get_best_model('svm', svm_best_logloss_params))
+    ]
+    
+    return StackingClassifier(
+        estimators=estimators,
+        final_estimator=LogisticRegression(C=meta_C, random_state=42),
+        cv=5,
+        passthrough=passthrough,
+        n_jobs=-1
+    )
+
 def objective_with_metrics(trial, X, y, model_type='lgbm'):
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     
@@ -79,6 +100,8 @@ def objective_with_metrics(trial, X, y, model_type='lgbm'):
             model = get_bagging_trial_Model(trial)
         elif model_type == 'svm':
             model = get_SVM_trial_Model(trial)
+        elif model_type == 'stacking':
+            model = get_Stacking_trial_Model(trial)
 
         if model_type == 'lgbm':
             model.fit(

@@ -17,9 +17,9 @@ import pandas as pd
 import seaborn as sns
 
 # EXTRACTING TRAIN AND TEST DATA FROM DATASET
-def extract_data(apply_target_encode=True):
+def extract_data(apply_target_encode=True, random_state=42):
     df = pd.read_csv("Dataset/in-vehicle-coupon-recommendation.csv")
-    X_train, X_test, y_train, y_test = create_train_test_datasets(df)
+    X_train, X_test, y_train, y_test = create_train_test_datasets(df, random_state=random_state)
     X_train, X_test = encode_train_test_datasets(X_train, X_test, y_train, apply_target_encode)
     return X_train, X_test, y_train, y_test
 

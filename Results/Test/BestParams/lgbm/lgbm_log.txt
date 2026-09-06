@@ -1,0 +1,16 @@
+Model: lgbm
+Best AUC Score: 0.8252
+Parameters for Best AUC: {'boosting_type': 'gbdt', 'n_estimators': 740, 'learning_rate': 0.06306019877700901, 'max_depth': 10, 'num_leaves': 38, 'min_child_samples': 31, 'subsample': 0.7874669211557248, 'colsample_bytree': 0.6360101706105831}
+
+Best F1 Score: 0.7913
+Parameters for Best F1: {'boosting_type': 'gbdt', 'n_estimators': 666, 'learning_rate': 0.125050755654907, 'max_depth': 9, 'num_leaves': 39, 'min_child_samples': 31, 'subsample': 0.8153832785683361, 'colsample_bytree': 0.620631496549414}
+
+Best Log Loss Value: 0.5075
+Parameters for Best Log Loss: {'boosting_type': 'gbdt', 'n_estimators': 740, 'learning_rate': 0.06306019877700901, 'max_depth': 10, 'num_leaves': 38, 'min_child_samples': 31, 'subsample': 0.7874669211557248, 'colsample_bytree': 0.6360101706105831}
+
+Best Precision Score: 0.7684
+Parameters for Best Precision: {'boosting_type': 'gbdt', 'n_estimators': 780, 'learning_rate': 0.09076789709866397, 'max_depth': 10, 'num_leaves': 51, 'min_child_samples': 78, 'subsample': 0.9154236718908, 'colsample_bytree': 0.6252858889480076}
+
+Best Recall Score: 0.8454
+Parameters for Best Recall: {'boosting_type': 'gbdt', 'n_estimators': 122, 'learning_rate': 0.010223194657237141, 'max_depth': 8, 'num_leaves': 62, 'min_child_samples': 38, 'subsample': 0.7350610183598968, 'colsample_bytree': 0.921260062183799}
+--------------------------------------------------------------------------------

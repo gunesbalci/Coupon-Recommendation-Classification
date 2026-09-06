@@ -1,0 +1,16 @@
+Model: bagging
+Best AUC Score: 0.8136
+Parameters for Best AUC: {'max_depth': 18, 'n_estimators': 168, 'max_samples': 0.6017235035272963, 'max_features': 0.7742768390124075, 'bootstrap': True}
+
+Best F1 Score: 0.7871
+Parameters for Best F1: {'max_depth': 14, 'n_estimators': 144, 'max_samples': 0.7356578372791587, 'max_features': 0.7574599126927946, 'bootstrap': True}
+
+Best Log Loss Value: 0.5244
+Parameters for Best Log Loss: {'max_depth': 15, 'n_estimators': 221, 'max_samples': 0.7027843113840364, 'max_features': 0.8780643032270454, 'bootstrap': True}
+
+Best Precision Score: 0.7541
+Parameters for Best Precision: {'max_depth': 19, 'n_estimators': 181, 'max_samples': 0.9944826843141412, 'max_features': 0.9488698798342647, 'bootstrap': True}
+
+Best Recall Score: 0.8561
+Parameters for Best Recall: {'max_depth': 4, 'n_estimators': 111, 'max_samples': 0.9460569621099121, 'max_features': 0.6682658931833065, 'bootstrap': True}
+--------------------------------------------------------------------------------

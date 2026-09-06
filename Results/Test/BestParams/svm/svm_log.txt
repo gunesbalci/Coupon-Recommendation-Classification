@@ -1,0 +1,16 @@
+Model: svm
+Best AUC Score: 0.7811
+Parameters for Best AUC: {'C': 1.7234532170464567, 'kernel': 'rbf', 'gamma': 'scale'}
+
+Best F1 Score: 0.7645
+Parameters for Best F1: {'C': 1.7234532170464567, 'kernel': 'rbf', 'gamma': 'scale'}
+
+Best Log Loss Value: 0.5567
+Parameters for Best Log Loss: {'C': 1.7234532170464567, 'kernel': 'rbf', 'gamma': 'scale'}
+
+Best Precision Score: 0.7307
+Parameters for Best Precision: {'C': 4.936332527260067, 'kernel': 'rbf', 'gamma': 'scale'}
+
+Best Recall Score: 0.8282
+Parameters for Best Recall: {'C': 0.021519260344323853, 'kernel': 'rbf', 'gamma': 'auto'}
+--------------------------------------------------------------------------------

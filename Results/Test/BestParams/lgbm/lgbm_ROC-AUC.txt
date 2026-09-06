@@ -1,0 +1,8 @@
+
+=== REPEATED FINAL TEST PERFORMANCE (5 Splits) ===
+Mean Test ROC-AUC: 0.8280 (±0.0047)
+Mean Test F1: 0.7928 (±0.0046)
+Mean Test Log Loss: 0.5143 (±0.0105)
+Mean Test Precision: 0.7739 (±0.0074)
+Mean Test Recall: 0.8129 (±0.0093)
+================================================================================

@@ -2,6 +2,7 @@ from lightgbm import LGBMClassifier
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import pickle
 import numpy as np
 from sklearn.ensemble import BaggingClassifier, StackingClassifier
 from sklearn.linear_model import LogisticRegression
@@ -89,7 +90,7 @@ def evaluate_with_repeated_splits(best_params, model_type='lgbm', n_repeats=5, b
         f.write(f"Mean Test Log Loss: {mean_logloss:.4f} (±{np.std(test_logloss_scores):.4f})\n")
         f.write(f"Mean Test Precision: {mean_precision:.4f} (±{np.std(test_precision_scores):.4f})\n")
         f.write(f"Mean Test Recall: {mean_recall:.4f} (±{np.std(test_recall_scores):.4f})\n")
-        f.write("=" * 80 + "\n")
+        f.write("=" * 80 + "\n")    
 
 lgbm_best_roc_auc_params = {
     'boosting_type': 'gbdt', 'n_estimators': 544,
@@ -145,3 +146,30 @@ stacking_best_f1_params = {'meta_C': 0.002906966654561084, 'passthrough': False}
 stacking_best_logloss_params = {'meta_C': 7.536579499191063, 'passthrough': True}
 stacking_best_precision_params = {'meta_C': 7.536579499191063, 'passthrough': True}
 stacking_best_recall_params = {'meta_C': 0.002906966654561084, 'passthrough': False}
+
+def train_model(best_params, model_type='lgbm', best_metric="ROC-AUC", save=False): 
+    X_train, X_test, y_train, y_test = extract_data(apply_target_encode=True, random_state=42)
+    
+    model = get_best_model(model_type, best_params)    
+    model.fit(X_train, y_train)
+    
+    y_pred_proba = model.predict_proba(X_test)[:, 1]
+    y_pred = model.predict(X_test)
+    
+    roc_auc = roc_auc_score(y_test, y_pred_proba)
+    f1 = f1_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, zero_division=0)
+    test_recall = recall_score(y_test, y_pred, zero_division=0)
+    logloss_score = log_loss(y_test, y_pred_proba)
+
+    if save:
+        model_file_name = f"Results/Test/BestParams/{model_type}/best_model_{best_metric}.pkl"
+        with open(model_file_name, "wb") as model_file:
+            pickle.dump(model, model_file)
+
+    print("\n=== FINAL TEST PERFORMANCE ===")
+    print(f"Test ROC-AUC : {roc_auc:.4f}")
+    print(f"Test F1      : {f1:.4f}")
+    print(f"Test Log Loss: {logloss_score:.4f}")
+    print(f"Test Precision: {precision:.4f}")
+    print(f"Test Recall   : {test_recall:.4f}")

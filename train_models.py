@@ -147,8 +147,8 @@ stacking_best_logloss_params = {'meta_C': 7.536579499191063, 'passthrough': True
 stacking_best_precision_params = {'meta_C': 7.536579499191063, 'passthrough': True}
 stacking_best_recall_params = {'meta_C': 0.002906966654561084, 'passthrough': False}
 
-def train_model(best_params, model_type='lgbm', best_metric="ROC-AUC", save=False): 
-    X_train, X_test, y_train, y_test = extract_data(apply_target_encode=True, random_state=42)
+def train_model(data, best_params, model_type='lgbm', best_metric="ROC-AUC", save=False): 
+    X_train, X_test, y_train, y_test = data
     
     model = get_best_model(model_type, best_params)    
     model.fit(X_train, y_train)

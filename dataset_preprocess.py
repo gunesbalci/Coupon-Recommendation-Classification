@@ -44,7 +44,7 @@ def create_new_features(data):
     data = data.drop(columns=['RestaurantLessThan20', 'CoffeeHouse', 'CarryAway', 'Bar', 'Restaurant20To50'])
     return data
 
-def create_train_test_datasets(data, print_on=False, random_state=42):
+def create_train_test_datasets(data, print_on=False, random_state=42, create_features=True):
     data = data.drop_duplicates()
     
     # TRAIN-TEST SPLIT
@@ -57,8 +57,9 @@ def create_train_test_datasets(data, print_on=False, random_state=42):
     X_train = drop_columns(X_train)
     X_test = drop_columns(X_test)
     X_train, X_test = fill_missing_values(X_train, X_test, print_on)
-    X_train = create_new_features(X_train)
-    X_test = create_new_features(X_test)
+    if create_features:
+        X_train = create_new_features(X_train)
+        X_test = create_new_features(X_test)
 
     return X_train, X_test, y_train, y_test
 

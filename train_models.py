@@ -173,3 +173,5 @@ def train_model(data, best_params, model_type='lgbm', best_metric="ROC-AUC", sav
     print(f"Test Log Loss: {logloss_score:.4f}")
     print(f"Test Precision: {precision:.4f}")
     print(f"Test Recall   : {test_recall:.4f}")
+
+    return roc_auc

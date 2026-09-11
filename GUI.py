@@ -15,7 +15,7 @@ from comparing import extract_data
 
 st.set_page_config(page_title="In-Vehicle Coupon Recommendation", layout="wide")
 st.title("In-Vehicle Coupon Recommendation - Makine Öğrenmesi")
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Keşifsel Veri Analizi (EDA)", "🏆 Model Karşılaştırmaları", "⚙️ Optuna Optimizasyon Sonuçları", "📄 Sonuç"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Keşifsel Veri Analizi (EDA)", "🏆 Model Karşılaştırmaları", "⚙️ Optuna Optimizasyon Sonuçları", "🎯 Sonuç", "🧬 Sentetik Veri Sonuçları"])
 
 with tab1:
     st.header("Keşifsel Veri Analizi ve Önemli Bulgular")
@@ -106,7 +106,64 @@ with tab3:
 with tab4:
     st.header("Son Modelin Sonuçları ve Performans Detayları")
 
-    y_test,y_pred,y_pred_proba,auc_val,f1_val,logloss_val,precision_val,recall_val = get_model_results()
+    y_test,y_pred,y_pred_proba,auc_val,f1_val,logloss_val,precision_val,recall_val = get_model_results("Results/Test/BestParams/stacking/best_model_ROC-AUC.pkl")
+    
+    # --- 5 TANE YAN YANA DAİRE KISMI ---
+    html_code = get_html_code(auc_val,f1_val,logloss_val,precision_val,recall_val)
+    st.markdown(html_code, unsafe_allow_html=True)
+    # ----------------------------------
+    
+    st.markdown("---")
+    
+    chart_col1, chart_col2 = st.columns(2)
+    
+    with chart_col1:
+        st.subheader("Confusion Matrix (Hata Matrisi)")
+        cm = confusion_matrix(y_test, y_pred)
+        
+        fig_cm = px.imshow(
+            cm, 
+            text_auto=True, 
+            color_continuous_scale="Blues",
+            labels=dict(x="Tahmin Edilen Sınıf", y="Gerçek Sınıf", color="Adet"),
+            x=['Kabul Etmez (0)', 'Kabul Eder (1)'],
+            y=['Kabul Etmez (0)', 'Kabul Eder (1)']
+        )
+        fig_cm.update_layout(
+            template='plotly_white',
+            margin=dict(l=20, r=20, t=40, b=20)
+        )
+        st.plotly_chart(fig_cm, width='stretch')
+        
+    with chart_col2:
+        st.subheader("ROC Eğrisi (ROC Curve)")
+        fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
+        
+        fig_roc = go.Figure()
+        fig_roc.add_trace(go.Scatter(
+            x=fpr, y=tpr, 
+            mode='lines+markers', 
+            name=f'Model ROC (AUC = {auc_val:.4f})', 
+            line=dict(width=3, color='#1f77b4')
+        ))
+        fig_roc.add_trace(go.Scatter(
+            x=[0, 1], y=[0, 1], 
+            mode='lines', 
+            name='Rastgele Tahmin', 
+            line=dict(dash='dash', color='gray')
+        ))
+        fig_roc.update_layout(
+            xaxis_title="False Positive Rate (1 - Specificity)",
+            yaxis_title="True Positive Rate (Sensitivity)",
+            template='plotly_white',
+            margin=dict(l=20, r=20, t=40, b=20)
+        )
+        st.plotly_chart(fig_roc, width='stretch')
+
+with tab5:
+    st.header("Sentetik Veri İle Eğitilen Modelin Sonuçları ve Performans Detayları")
+
+    y_test,y_pred,y_pred_proba,auc_val,f1_val,logloss_val,precision_val,recall_val = get_model_results("Results/Test/BestParams/stacking/best_model_ROC-AUC-SYNTHETIC.pkl")
     
     # --- 5 TANE YAN YANA DAİRE KISMI ---
     html_code = get_html_code(auc_val,f1_val,logloss_val,precision_val,recall_val)

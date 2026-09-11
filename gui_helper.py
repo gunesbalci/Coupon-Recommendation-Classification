@@ -123,8 +123,7 @@ def plot_manual_results(model_name):
 
     return fig
 
-def get_model_results():
-    model_path = "Results/Test/BestParams/stacking/best_model_ROC-AUC.pkl"
+def get_model_results(model_path):
 
     with open(model_path, "rb") as f:
         loaded_model = pickle.load(f)
